@@ -1,8 +1,8 @@
 package my_package;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static java.lang.Integer.parseInt;
@@ -25,5 +25,12 @@ public class StringCalculatorTest {
         int numberAsInteger = parseInt(number);
 
         assertThat(result, is(numberAsInteger));
+    }
+
+    @Test
+    public void when_string_two_numbers_result_is_the_of_them() {
+        int result = StringCalculator.add("1,2");
+
+        assertThat(result, is(3));
     }
 }
