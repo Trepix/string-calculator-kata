@@ -12,4 +12,10 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("");
         assertThat(result, is(0));
     }
+
+    @Test
+    public void when_string_has_one_numbers_result_is_the_number_itself() {
+        int result = StringCalculator.add("1");
+        assertThat(result, is(1));
+    }
 }
