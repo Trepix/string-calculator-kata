@@ -37,23 +37,16 @@ public class StringCalculatorTest {
     private static Stream<Arguments> numbersAndItsSum() {
         return of(
                 arguments("1,2", 3),
-                arguments("10,21", 31),
-                arguments("0,23", 23)
+                arguments("0,23", 23),
+                arguments("1,2,3", 6)
         );
     }
 
     @ParameterizedTest
     @MethodSource("numbersAndItsSum")
-    public void when_string_two_numbers_result_should_be_the_sum_of_them(String input, int addedNumbers) {
+    public void when_string_has_multiple_numbers_result_should_be_the_sum_of_them(String input, int addedNumbers) {
         int result = StringCalculator.add(input);
 
         assertThat(result, is(addedNumbers));
-    }
-
-    @Test
-    public void when_string_has_multiple_numbers_result_should_be_the_sum_of_them() {
-        int result = StringCalculator.add("1,2,3");
-
-        assertThat(result, is(6));
     }
 }

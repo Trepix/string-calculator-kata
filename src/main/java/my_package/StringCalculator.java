@@ -12,4 +12,3 @@ public class StringCalculator {
         return 6;
     }
 }
-//Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
