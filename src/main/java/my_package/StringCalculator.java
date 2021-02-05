@@ -7,6 +7,6 @@ public class StringCalculator {
         if (input.isEmpty()) return 0;
 
         String[] numbers = input.split(",");
-        return stream(numbers).mapToInt(Integer::parseInt).sum();
+        return stream(numbers).flatMap(x -> stream(x.split("\n"))).mapToInt(Integer::parseInt).sum();
     }
 }

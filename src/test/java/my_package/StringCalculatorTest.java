@@ -50,4 +50,11 @@ public class StringCalculatorTest {
         assertThat(result, is(addedNumbers));
     }
 
+    @Test
+    public void should_sum_the_numbers_when_they_are_splatted_by_new_lines() {
+        int result = StringCalculator.add("1\n2");
+
+        assertThat(result, is(3));
+    }
+
 }
