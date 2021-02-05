@@ -19,7 +19,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 public class StringCalculatorTest {
 
     @Test
-    public void when_string_is_empty_result_should_be_0() {
+    public void should_be_O_when_string_is_empty() {
         int result = StringCalculator.add("");
 
         assertThat(result, is(0));
@@ -27,7 +27,7 @@ public class StringCalculatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "5", "100", "1232"})
-    public void when_string_has_one_numbers_result_should_be_the_number_itself(String number) {
+    public void should_be_the_number_itself_when_input_only_contains_a_number(String number) {
         int result = StringCalculator.add(number);
         int numberAsInteger = parseInt(number);
 
@@ -44,9 +44,10 @@ public class StringCalculatorTest {
 
     @ParameterizedTest
     @MethodSource("numbersAndItsSum")
-    public void when_string_has_multiple_numbers_result_should_be_the_sum_of_them(String input, int addedNumbers) {
+    public void should_sum_the_numbers_when_they_are_splatted_by_commas(String input, int addedNumbers) {
         int result = StringCalculator.add(input);
 
         assertThat(result, is(addedNumbers));
     }
+
 }
