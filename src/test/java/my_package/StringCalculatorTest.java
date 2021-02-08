@@ -65,4 +65,12 @@ public class StringCalculatorTest {
         assertThat(result, is(6));
     }
 
+    @Test
+    public void should_be_able_to_use_any_delimiter() {
+        int result = StringCalculator.add("//;\n1;2");
+
+        assertThat(result, is(3));
+    }
+
+
 }
