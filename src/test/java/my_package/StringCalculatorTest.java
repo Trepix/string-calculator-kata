@@ -10,13 +10,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.stream.Stream;
 
 import static java.lang.Integer.parseInt;
-import static java.util.stream.Stream.*;
+import static java.util.stream.Stream.of;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class StringCalculatorTest {
+
 
     @Test
     public void should_be_O_when_string_is_empty() {
@@ -42,19 +42,27 @@ public class StringCalculatorTest {
         );
     }
 
+
     @ParameterizedTest
     @MethodSource("numbersAndItsSum")
-    public void should_sum_the_numbers_when_they_are_splatted_by_commas(String input, int addedNumbers) {
+    public void should_add_the_numbers_when_they_are_splatted_by_commas(String input, int addedNumbers) {
         int result = StringCalculator.add(input);
 
         assertThat(result, is(addedNumbers));
     }
 
     @Test
-    public void should_sum_the_numbers_when_they_are_splatted_by_new_lines() {
+    public void should_add_the_numbers_when_they_are_splatted_by_new_lines() {
         int result = StringCalculator.add("1\n2");
 
         assertThat(result, is(3));
+    }
+
+    @Test
+    public void should_add_the_numbers_when_they_combine_comas_and_new_lines() {
+        int result = StringCalculator.add("1\n2,3");
+
+        assertThat(result, is(6));
     }
 
 }
