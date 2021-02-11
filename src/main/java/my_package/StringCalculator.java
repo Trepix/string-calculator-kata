@@ -1,5 +1,6 @@
 package my_package;
 
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.stream;
@@ -8,11 +9,14 @@ public class StringCalculator {
     public static int add(String input) {
         if (input.isEmpty()) return 0;
 
-        Stream<String> numbers = splitIntoNumbers(input);
-        return numbers.mapToInt(Integer::parseInt).sum();
+        return splitIntoNumbers(input).sum();
     }
 
-    private static Stream<String> splitIntoNumbers(String input) {
+    private static IntStream splitIntoNumbers(String input) {
+        return splitByDelimiter(input).mapToInt(Integer::parseInt);
+    }
+
+    private static Stream<String> splitByDelimiter(String input) {
         if (input.startsWith("//")) {
             String delimiter = input.split("\n")[0].replace("//", "");
             String numbers = input.split("\n")[1];
