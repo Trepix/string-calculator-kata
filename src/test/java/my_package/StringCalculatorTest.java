@@ -25,19 +25,16 @@ public class StringCalculatorTest {
         assertThat(result, is(0));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "5", "100", "1232"})
-    public void should_be_the_number_itself_when_input_only_contains_a_number(String number) {
-        int result = StringCalculator.add(number);
-        int numberAsInteger = parseInt(number);
+    @Test
+    public void should_be_the_number_itself_when_input_only_contains_a_number() {
+        int result = StringCalculator.add("100");
 
-        assertThat(result, is(numberAsInteger));
+        assertThat(result, is(100));
     }
 
     private static Stream<Arguments> numbersAndItsSum() {
         return of(
                 arguments("1,2", 3),
-                arguments("0,23", 23),
                 arguments("1,2,3", 6)
         );
     }
