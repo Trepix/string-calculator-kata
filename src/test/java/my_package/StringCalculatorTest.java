@@ -1,22 +1,22 @@
 package my_package;
 
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static java.lang.Integer.parseInt;
 import static java.util.stream.Stream.of;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class StringCalculatorTest {
-
 
     @Test
     public void should_be_O_when_string_is_empty() {
@@ -38,7 +38,6 @@ public class StringCalculatorTest {
                 arguments("1,2,3", 6)
         );
     }
-
 
     @ParameterizedTest
     @MethodSource("numbersAndItsSum")
@@ -67,6 +66,16 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("//;\n1;2");
 
         assertThat(result, is(3));
+    }
+
+    @Test
+    @Disabled
+    public void should_throw_an_exception_when_input_contain_negative_numbers() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            StringCalculator.add("1,4,-1");
+        });
+
+        assertThat(exception.getMessage(), is("negatives not allowed: -1"));
     }
 
 
