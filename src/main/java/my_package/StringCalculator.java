@@ -26,7 +26,6 @@ public class StringCalculator {
             String numbers = input.split("\n")[1];
             return Stream.of(numbers.split(delimiter));
         }
-        return Stream.of(input.split(","))
-                .flatMap(x -> stream(x.split("\n")));
+        return Stream.of(input.split("[,|\n]"));
     }
 }
