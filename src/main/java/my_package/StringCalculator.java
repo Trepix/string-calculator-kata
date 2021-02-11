@@ -22,11 +22,11 @@ public class StringCalculator {
 
     private static Stream<String> splitByDelimiter(String input) {
         String delimiter = "[,|\n]";
+        String numbers = input;
         if (input.startsWith("//")) {
             delimiter = input.split("\n")[0].replace("//", "");
-            String numbers = input.split("\n")[1];
-            return Stream.of(numbers.split(delimiter));
+            numbers = input.split("\n")[1];
         }
-        return Stream.of(input.split(delimiter));
+        return Stream.of(numbers.split(delimiter));
     }
 }
