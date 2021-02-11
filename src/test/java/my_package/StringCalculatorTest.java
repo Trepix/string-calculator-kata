@@ -69,7 +69,6 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @Disabled
     public void should_throw_an_exception_when_input_contain_negative_numbers() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             StringCalculator.add("1,4,-1");
