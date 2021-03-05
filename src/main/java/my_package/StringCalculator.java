@@ -14,14 +14,19 @@ public class StringCalculator {
         if (input.contains("-2")) {
             throw new IllegalArgumentException("negatives not allowed: -1, -2");
         }
-        else splitIntoNumbers(input).forEach(StringCalculator::validate);
+        else validate(input);
 
         return splitIntoNumbers(input).sum();
     }
 
-    private static void validate(int number) {
+    private static void validate(String input) {
+        splitIntoNumbers(input).forEach(StringCalculator::validateNumber);
+    }
+
+    private static void validateNumber(int number) {
         if (number < 0) throw new IllegalArgumentException("negatives not allowed: " + number);
     }
+
 
     private static IntStream splitIntoNumbers(String input) {
         return splitByDelimiter(input).mapToInt(Integer::parseInt);
