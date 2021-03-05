@@ -24,7 +24,11 @@ public class StringCalculator {
     }
 
     private static void validateNumber(int number) {
-        if (number < 0) throw new IllegalArgumentException("negatives not allowed: " + number);
+        if (isInvalidNumber(number)) throw new IllegalArgumentException("negatives not allowed: " + number);
+    }
+
+    private static boolean isInvalidNumber(int number) {
+        return number < 0;
     }
 
 
