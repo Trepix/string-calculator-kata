@@ -86,4 +86,11 @@ public class StringCalculatorTest {
         assertThat(exception.getMessage(), is("negatives not allowed: -1, -2"));
     }
 
+    @Test
+    public void should_ignore_numbers_greater_than_1000() {
+        int result = StringCalculator.add("2,1001");
+
+        assertThat(result, is(2));
+    }
+
 }

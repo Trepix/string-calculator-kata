@@ -10,7 +10,7 @@ public class StringCalculator {
 
         failIfNotValid(input);
 
-        return splitIntoNumbers(input).sum();
+        return splitIntoNumbers(input).filter(x -> x <= 1000).sum();
     }
 
     private static void failIfNotValid(String input) {
