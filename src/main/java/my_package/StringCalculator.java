@@ -1,5 +1,7 @@
 package my_package;
 
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -20,10 +22,15 @@ public class StringCalculator {
     }
 
     private static void validate(String input) {
-        splitIntoNumbers(input).filter(StringCalculator::isInvalidNumber).forEach(StringCalculator::raiseException);
+        Optional<String> invalidNumber = splitIntoNumbers(input)
+                .filter(StringCalculator::isInvalidNumber)
+                .mapToObj(Integer::toString)
+                .findAny();
+
+        invalidNumber.ifPresent(StringCalculator::raiseException);
     }
 
-    private static void raiseException(int number) {
+    private static void raiseException(String number) {
         throw new IllegalArgumentException("negatives not allowed: " + number);
     }
 
