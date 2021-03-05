@@ -12,9 +12,7 @@ public class StringCalculator {
     public static int add(String input) {
         if (input.isEmpty()) return 0;
 
-        if (input.contains("-2")) {
-            throw new IllegalArgumentException("negatives not allowed: -1, -2");
-        } else failIfNotValid(input);
+        failIfNotValid(input);
 
         return splitIntoNumbers(input).sum();
     }
@@ -25,17 +23,12 @@ public class StringCalculator {
                 .mapToObj(Integer::toString)
                 .collect(Collectors.joining(", "));
 
-        if (!invalidNumber.isEmpty()) raiseException(invalidNumber);
-    }
-
-    private static void raiseException(String number) {
-        throw new IllegalArgumentException("negatives not allowed: " + number);
+        if (!invalidNumber.isEmpty()) throw new IllegalArgumentException("negatives not allowed: " + invalidNumber);
     }
 
     private static boolean isInvalidNumber(int number) {
         return number < 0;
     }
-
 
     private static IntStream splitIntoNumbers(String input) {
         return splitByDelimiter(input).mapToInt(Integer::parseInt);
