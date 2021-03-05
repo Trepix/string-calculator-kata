@@ -1,7 +1,6 @@
 package my_package;
 
-import java.util.Optional;
-import java.util.OptionalInt;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -15,19 +14,18 @@ public class StringCalculator {
 
         if (input.contains("-2")) {
             throw new IllegalArgumentException("negatives not allowed: -1, -2");
-        }
-        else validate(input);
+        } else failIfNotValid(input);
 
         return splitIntoNumbers(input).sum();
     }
 
-    private static void validate(String input) {
-        Optional<String> invalidNumber = splitIntoNumbers(input)
+    private static void failIfNotValid(String input) {
+        String invalidNumber = splitIntoNumbers(input)
                 .filter(StringCalculator::isInvalidNumber)
                 .mapToObj(Integer::toString)
-                .findAny();
+                .collect(Collectors.joining(", "));
 
-        invalidNumber.ifPresent(StringCalculator::raiseException);
+        if (!invalidNumber.isEmpty()) raiseException(invalidNumber);
     }
 
     private static void raiseException(String number) {
