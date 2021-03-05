@@ -77,5 +77,13 @@ public class StringCalculatorTest {
         assertThat(exception.getMessage(), is("negatives not allowed: -1"));
     }
 
+    @Test
+    public void should_throw_an_exception_when_input_contain_multiple_negative_numbers() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            StringCalculator.add("1,4,-1,-2");
+        });
+
+        assertThat(exception.getMessage(), is("negatives not allowed: -1, -2"));
+    }
 
 }

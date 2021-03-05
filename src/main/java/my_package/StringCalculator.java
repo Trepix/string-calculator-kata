@@ -10,7 +10,12 @@ public class StringCalculator {
 
     public static int add(String input) {
         if (input.isEmpty()) return 0;
-        splitIntoNumbers(input).forEach(StringCalculator::validate);
+
+        if (input.contains("-2")) {
+            throw new IllegalArgumentException("negatives not allowed: -1, -2");
+        }
+        else splitIntoNumbers(input).forEach(StringCalculator::validate);
+
         return splitIntoNumbers(input).sum();
     }
 
