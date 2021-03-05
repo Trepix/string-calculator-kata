@@ -10,19 +10,25 @@ public class StringCalculator {
 
         failIfNotValid(input);
 
-        return splitIntoNumbers(input).filter(x -> x <= 1000).sum();
+        return splitIntoNumbers(input)
+                .filter(StringCalculator::isEnoughSmall)
+                .sum();
+    }
+
+    private static boolean isEnoughSmall(int number) {
+        return number <= 1000;
     }
 
     private static void failIfNotValid(String input) {
         String invalidNumbers = splitIntoNumbers(input)
-                .filter(StringCalculator::isInvalidNumber)
+                .filter(StringCalculator::isNegativeNumber)
                 .mapToObj(Integer::toString)
                 .collect(Collectors.joining(", "));
 
         if (!invalidNumbers.isEmpty()) throw new IllegalArgumentException("negatives not allowed: " + invalidNumbers);
     }
 
-    private static boolean isInvalidNumber(int number) {
+    private static boolean isNegativeNumber(int number) {
         return number < 0;
     }
 }
