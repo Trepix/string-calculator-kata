@@ -3,9 +3,11 @@ package my_package;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.Arrays.stream;
-
 public class StringCalculator {
+
+    public static final String DEFAULT_DELIMITERS = "[,|\n]";
+    public static final String CUSTOM_DELIMITER_SEQUENCE = "//";
+
     public static int add(String input) {
         if (input.isEmpty()) return 0;
         splitIntoNumbers(input).forEach(StringCalculator::validate);
@@ -21,11 +23,12 @@ public class StringCalculator {
     }
 
     private static Stream<String> splitByDelimiter(String input) {
-        String delimiter = "[,|\n]";
+        String delimiter = DEFAULT_DELIMITERS;
         String numbers = input;
-        if (input.startsWith("//")) {
-            delimiter = input.split("\n")[0].replace("//", "");
-            numbers = input.split("\n")[1];
+        if (input.startsWith(CUSTOM_DELIMITER_SEQUENCE)) {
+            String[] inputSplitByEndLines = input.split("\n");
+            delimiter = inputSplitByEndLines[0].replace(CUSTOM_DELIMITER_SEQUENCE, "");
+            numbers = inputSplitByEndLines[1];
         }
         return Stream.of(numbers.split(delimiter));
     }
