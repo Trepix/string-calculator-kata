@@ -69,7 +69,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void should_throw_an_exception_when_input_contain_negative_numbers() {
+    public void should_throw_an_exception_when_input_contain_a_negative_number() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             StringCalculator.add("1,4,-1");
         });
@@ -78,7 +78,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void should_throw_an_exception_when_input_contain_multiple_negative_numbers() {
+    public void should_throw_an_exception_showing_all_invalid_numbers_when_input_contain_negative_numbers() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             StringCalculator.add("1,4,-1,-2");
         });
