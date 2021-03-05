@@ -20,11 +20,11 @@ public class StringCalculator {
     }
 
     private static void validate(String input) {
-        splitIntoNumbers(input).forEach(StringCalculator::validateNumber);
+        splitIntoNumbers(input).filter(StringCalculator::isInvalidNumber).forEach(StringCalculator::raiseException);
     }
 
-    private static void validateNumber(int number) {
-        if (isInvalidNumber(number)) throw new IllegalArgumentException("negatives not allowed: " + number);
+    private static void raiseException(int number) {
+        throw new IllegalArgumentException("negatives not allowed: " + number);
     }
 
     private static boolean isInvalidNumber(int number) {
