@@ -93,4 +93,12 @@ public class StringCalculatorTest {
         assertThat(result, is(2));
     }
 
+    @Test
+    public void should_be_able_to_use_a_delimiter_with_any_length() {
+        int result = StringCalculator.add("//[***]\n5***6***8");
+
+        assertThat(result, is(19));
+    }
+
+
 }
