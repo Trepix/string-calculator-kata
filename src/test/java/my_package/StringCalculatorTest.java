@@ -107,4 +107,10 @@ public class StringCalculatorTest {
         assertThat(result, is(12));
     }
 
+    @Test
+    public void should_be_able_to_use_multiple_delimiters_with_any_length() {
+        int result = StringCalculator.add("//[**][%%]\\n32**1%%0");
+
+        assertThat(result, is(33));
+    }
 }
