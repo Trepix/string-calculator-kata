@@ -100,5 +100,11 @@ public class StringCalculatorTest {
         assertThat(result, is(19));
     }
 
+    @Test
+    public void should_be_able_to_use_multiple_delimiters_with_one_character_length() {
+        int result = StringCalculator.add("//[*][%]\\n6*2%4");
+
+        assertThat(result, is(12));
+    }
 
 }
